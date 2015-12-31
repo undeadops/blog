@@ -31,10 +31,10 @@ help:
 	@echo '   make ssh_upload                  upload the web site via SSH        '
 	@echo '   make rsync_upload                upload the web site via rsync+ssh  '
 	@echo '                                                                       '
-        @echo '   make newpost	                   Create a new blog post             '
-        @echo '   make editpost                    Edit a blog post                   '
-        @echo '   make newpage                     Create a new page                  '
-        @echo '   make editpage                    Edit a page                        '
+	@echo '   make newpost	                   Create a new blog post             '
+	@echo '   make editpost                    Edit a blog post                   '
+	@echo '   make newpage                     Create a new page                  '
+	@echo '   make editpage                    Edit a page                        '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html'
 	@echo '                                                                       '
 
@@ -90,36 +90,36 @@ ifdef NAME
         echo ""              >> $(INPUTDIR)/$(SLUG).$(EXT)
         ${EDITOR} ${INPUTDIR}/${SLUG}.${EXT} &
 else
-        @echo 'Variable NAME is not defined.'
-        @echo 'Do make newpost NAME='"'"'Post Name'"'"
+	@echo 'Variable NAME is not defined.'
+	@echo 'Do make newpost NAME='"'"'Post Name'"'"
 endif
 
 editpost:
 ifdef NAME
-        ${EDITOR} ${INPUTDIR}/${SLUG}.${EXT} &
+	${EDITOR} ${INPUTDIR}/${SLUG}.${EXT} &
 else
-        @echo 'Variable NAME is not defined.'
-        @echo 'Do make editpost NAME='"'"'Post Name'"'"
+	@echo 'Variable NAME is not defined.'
+	@echo 'Do make editpost NAME='"'"'Post Name'"'"
 endif
 
 newpage:
 ifdef NAME
-        echo "Title: $(NAME)" >  $(PAGESDIR)/$(SLUG).$(EXT)
-        echo "Slug: $(SLUG)" >> $(PAGESDIR)/$(SLUG).$(EXT)
-        echo ""              >> $(PAGESDIR)/$(SLUG).$(EXT)
-        echo ""              >> $(PAGESDIR)/$(SLUG).$(EXT)
-        ${EDITOR} ${PAGESDIR}/${SLUG}.$(EXT)
+	echo "Title: $(NAME)" >  $(PAGESDIR)/$(SLUG).$(EXT)
+	echo "Slug: $(SLUG)" >> $(PAGESDIR)/$(SLUG).$(EXT)
+	echo ""              >> $(PAGESDIR)/$(SLUG).$(EXT)
+	echo ""              >> $(PAGESDIR)/$(SLUG).$(EXT)
+	${EDITOR} ${PAGESDIR}/${SLUG}.$(EXT)
 else
-        @echo 'Variable NAME is not defined.'
-        @echo 'Do make newpage NAME='"'"'Page Name'"'"
+	@echo 'Variable NAME is not defined.'
+	@echo 'Do make newpage NAME='"'"'Page Name'"'"
 endif
 
 editpage:
 ifdef NAME
-        ${EDITOR} ${PAGESDIR}/${SLUG}.$(EXT)
+	${EDITOR} ${PAGESDIR}/${SLUG}.$(EXT)
 else
-        @echo 'Variable NAME is not defined.'
-        @echo 'Do make editpage NAME='"'"'Page Name'"'"
+	@echo 'Variable NAME is not defined.'
+	@echo 'Do make editpage NAME='"'"'Page Name'"'"
 endif
 
 .PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload newpost editpost newpage editpage
