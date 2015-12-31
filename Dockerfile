@@ -17,9 +17,9 @@ RUN apt-get update && \
 
 RUN pip3 install pelican Markdown
 
-RUN mkdir /source && \
-    mkdir /www && \
-    mkdir /etc/nginx/ssl
+RUN mkdir /source 
+RUN mkdir /www 
+RUN mkdir /etc/nginx/ssl
 
 ADD . /source
 
