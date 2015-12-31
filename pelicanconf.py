@@ -66,7 +66,7 @@ ARTICLE_URL = "{date:%Y}/{date:%m}/{slug}/"
 ARTICLE_SAVE_AS = "{date:%Y}/{date:%m}/{slug}/index.html"
 
 # static paths will be copied under the same name
-STATIC_PATHS = ["images", "files", ]
+STATIC_PATHS = ["images", "files", 'extra/robots.txt', 'extra/favicon.ico' ]
 
 EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
