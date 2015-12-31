@@ -30,7 +30,7 @@ FOUNDATION_PYGMENT_THEME = 'monokai'
 
 MENUITEMS = ""
 
-GITHUB_URL = 'https://github.com/metaRx'
+GITHUB_URL = 'https://github.com/undeadops'
 DISQUS_SITENAME = "metausernet"
 
 # Plugins
@@ -42,7 +42,8 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (('Reddit', 'http://reddit.com/'),
+LINKS = (('GitHub', 'https://github.com/undeadops'),
+         ('Reddit', 'http://reddit.com/'),
          ('Amazon', 'http://amazon.com/'),
          ('Google', 'http://google.com/'),)
 
