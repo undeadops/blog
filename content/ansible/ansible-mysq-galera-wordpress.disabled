@@ -1,0 +1,56 @@
+Title: Ansible, MySQL/Galera, and Wordpress
+Date: 2014-12-5 23:12
+Category: Automation
+Tags: ansible, automation, clustering
+Slug: ansible-mysql-galera-wordpress
+Authors: Mitch
+
+
+Description
+-------
+
+I've been meaning to write this article for months... since my last post.  I really need my day job to change so I can have more time to work on things like this.  First off... Let me say, Wordpress... not really my most favorite opensource platform, as evident by my blog being actually written with [Pelican](http://blog.getpelican.com/).  But its simple enough, something I do way to much of, and it makes use of a database so I can show off some Galera clustering for this blog post. I will be using Ansible, so reading my [Trying out Ansible](|filename|../linux/trying-out-ansible.md) might be helpful if your unfamiliar.
+
+
+Goals
+-----
+
+* Setup Galera MySQL Cluster using MariaDB
+* Install Wordpress on same servers
+* Configure LoadBalancer to balance across all three servers
+
+You may pick up that I didn't include a shared wp-content/uploads directory.  More on that later, probably a follow up post to this one. This one is going to be busy as it is.
+
+
+Base Ansible Directory
+----
+
+    :::shell
+    .
+    ├── authorized.yml
+    ├── hosts
+    ├── LICENSE
+    ├── README.md
+    ├── roles
+    │   ├── common  
+    │   ├── files
+    │   │   │   └── 01-AnsibleManaged
+    │   │   └── tasks
+    │   │       └── main.yml
+    │   └── munin
+    │       ├── handlers
+    │       │   └── main.yml
+    │       ├── tasks
+    │       │   └── main.yml
+    │       └── templates
+    │           ├── munin.conf.jinja
+    │           └── munin-node.conf.jinja
+    └── site.yml
+
+    8 directories, 11 files
+
+Ok, This is the base structure we are starting with.  Can be grabbed from my [github](https://github.com/metarx). 
+
+We are going to start with a mysql role, which will be created in the roles directory.
+
+
