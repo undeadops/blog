@@ -1,10 +1,11 @@
 FROM ubuntu:wily
 MAINTAINER Mitch Anderson "mitch@metauser.net"
 
+ENV NGINX_VERSION 1.9.9-0+wily0
+
 RUN apt-get update && \ 
          DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade && \
-         DEBIAN_FRONTEND=noninteractive apt-get -y install python3-pip 
-         DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common && \
+         DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install python3-pip software-properties-common && \
          DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:nginx/development && \
          apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nginx=${NGINX_VERSION}
