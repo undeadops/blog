@@ -7,9 +7,13 @@ RUN apt-get update && \
          DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade && \
          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install python3-pip software-properties-common && \
          DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:nginx/development && \
-         apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nginx=${NGINX_VERSION}
-RUN apt-get clean all
+         apt-get clean all && \
+         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install nginx=${NGINX_VERSION} && \
+    apt-get clean all && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pip3 install pelican Markdown
 
