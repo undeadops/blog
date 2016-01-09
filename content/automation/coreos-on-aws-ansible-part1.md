@@ -5,10 +5,9 @@ Tags: ansible, automation, coreos, docker, aws
 Slug: coreos-on-aws-ansible-part1
 Authors: Mitch
 
-Description
--------
+###Description
 
-I Promised I would do some follow-ups on "Infastructure as Code".  This is a 2 part write up on the subject.
+I Promised I would do some follow-ups on "Infastructure as Code".  This is a [2 part]({filename}coreos-on-aws-ansible-part2.md) write up on the subject.
 
 First a quick note or two about how I run Ansible with AWS.  I don't include AWS keys in my playbooks EVER.  I rely on my config of the AWS CLI which is under ~/.aws/config and ~/.aws/credentials.  Look up how to get that configured and tested before preceding here.
 
