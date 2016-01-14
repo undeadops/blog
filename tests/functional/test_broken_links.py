@@ -9,7 +9,7 @@ class BrokenLinkTest(unittest.TestCase):
 
     def setUp(self):
         ''' Define some unique data for validation '''
-        self.domain = "http://127.0.0.1"
+        self.domain = "https://127.0.0.1"
         self.acceptable_codes = [200]
 
     def tearDown(self):
@@ -58,4 +58,3 @@ class CrawlSite(BrokenLinkTest):
                 key in self.acceptable_codes,
                 "Found {0} in return codes with a count of {1}".format(key, results[key])
             )
-

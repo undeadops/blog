@@ -9,7 +9,7 @@ def run_functional_tests():
    '''
    tests = unittest.TestLoader().discover('tests/functional')
    results = unittest.TextTestRunner(verbosity=2).run(tests)
-   return result.wasSuccessful()
+   return results.wasSuccessful()
 
 if __name__ == '__main__':
   print "#" * 70
