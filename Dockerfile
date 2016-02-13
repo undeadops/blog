@@ -1,9 +1,9 @@
 FROM ubuntu:wily
 MAINTAINER Mitch Anderson "mitch@metauser.net"
 
-ENV NGINX_VERSION 1.9.9-0+wily0
+ENV NGINX_VERSION 1.9.10-1+wily0
 
-RUN apt-get update && \ 
+RUN apt-get update && \
          DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade && \
          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install python3-pip software-properties-common && \
          DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:nginx/development && \
@@ -17,14 +17,14 @@ RUN apt-get update && \
 
 RUN pip3 install pelican Markdown
 
-RUN mkdir /source 
-RUN mkdir /www 
+RUN mkdir /source
+RUN mkdir /www
 RUN mkdir /etc/nginx/ssl
 
 ADD . /source
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY nginx/default /etc/nginx/sites-enabled/default 
+COPY nginx/default /etc/nginx/sites-enabled/default
 COPY nginx/ssl/metauser.net.key /etc/nginx/ssl/
 COPY nginx/ssl/metauser.net.pem /etc/nginx/ssl/
 
