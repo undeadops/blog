@@ -1,8 +1,9 @@
-FROM undeadops/alpine-pyapp:3.3
+FROM undeadops/alpine-pyapp
 
 MAINTAINER Mitch Anderson "mitch@metauser.net"
 
-RUN pip install pelican Markdown
+RUN pip install pelican Markdown \
+  && adduser -S -s /sbin/nologin -G www-data www-data
 
 ADD . /source
 
@@ -19,4 +20,4 @@ RUN rm -rf /www/* \
   && cp -R ./output/* /www/
 
 # I don't know if this is needed.. 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD ["/usr/sbin/nginx", "-g", "daemon", "off;"]
