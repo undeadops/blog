@@ -1,25 +1,8 @@
-FROM ubuntu:wily
+FROM undeadops/alpine-pyapp:3.3
+
 MAINTAINER Mitch Anderson "mitch@metauser.net"
 
-ENV NGINX_VERSION 1.9.10-1+wily0
-
-RUN apt-get update && \
-         DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade && \
-         DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install python3-pip software-properties-common && \
-         DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:nginx/development && \
-         apt-get clean all && \
-         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install nginx=${NGINX_VERSION} && \
-    apt-get clean all && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN pip3 install pelican Markdown
-
-RUN mkdir /source
-RUN mkdir /www
-RUN mkdir /etc/nginx/ssl
+RUN pip install pelican Markdown
 
 ADD . /source
 
@@ -32,13 +15,8 @@ WORKDIR /source
 
 RUN pelican ./content/
 
-RUN rm -rf /www/*
-RUN cp -R ./output/* /www/
+RUN rm -rf /www/* \
+  && cp -R ./output/* /www/
 
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
-
-EXPOSE 80 443
-
+# I don't know if this is needed.. 
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
