@@ -20,4 +20,4 @@ RUN rm -rf /www/* \
   && cp -R ./output/* /www/
 
 # I don't know if this is needed.. 
-CMD ["/usr/sbin/nginx", "-g", "daemon", "off;"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
